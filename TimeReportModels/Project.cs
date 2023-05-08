@@ -1,7 +1,10 @@
-﻿namespace TimeReportModels
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace TimeReportModels
 {
     public class Project
     {
+        [Key]
         public int ProjId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }

@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using System.ComponentModel.DataAnnotations;
+
 
 namespace TimeReportModels
 {
-    internal class EmployeeProject
+    public class EmployeeProject
     {
+        //[Key]
+        //public int EmpProjId { get; set; }
         public int EmpId { get; set; }
         public int ProjId { get; set; }
     }
