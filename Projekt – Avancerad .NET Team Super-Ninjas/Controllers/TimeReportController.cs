@@ -81,7 +81,7 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPost("{empId:int}/{start:datetime}/{end:datetime}")]
         public async Task<IActionResult> CreateTimeReport(int empId, DateTime start, DateTime end)
         {
             try
