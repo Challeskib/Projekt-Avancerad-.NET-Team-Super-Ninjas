@@ -14,50 +14,38 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "EmployeeProjects",
-                columns: table => new
-                {
-                    EmpId = table.Column<int>(type: "int", nullable: false),
-                    ProjId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_EmployeeProjects", x => new { x.ProjId, x.EmpId });
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Employees",
                 columns: table => new
                 {
-                    EmpId = table.Column<int>(type: "int", nullable: false)
+                    EmployeeId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Employees", x => x.EmpId);
+                    table.PrimaryKey("PK_Employees", x => x.EmployeeId);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Projects",
                 columns: table => new
                 {
-                    ProjId = table.Column<int>(type: "int", nullable: false)
+                    ProjectId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Projects", x => x.ProjId);
+                    table.PrimaryKey("PK_Projects", x => x.ProjectId);
                 });
 
             migrationBuilder.CreateTable(
                 name: "TimeReports",
                 columns: table => new
                 {
-                    TRId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     EmployeeId = table.Column<int>(type: "int", nullable: false),
                     Start = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -66,42 +54,69 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TimeReports", x => x.TRId);
+                    table.PrimaryKey("PK_TimeReports", x => x.Id);
                     table.ForeignKey(
                         name: "FK_TimeReports_Employees_EmployeeId",
                         column: x => x.EmployeeId,
                         principalTable: "Employees",
-                        principalColumn: "EmpId",
+                        principalColumn: "EmployeeId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "EmployeeProject",
+                name: "EmployeeProjects",
                 columns: table => new
                 {
-                    EmployeesEmpId = table.Column<int>(type: "int", nullable: false),
-                    ProjectsProjId = table.Column<int>(type: "int", nullable: false)
+                    EmployeeId = table.Column<int>(type: "int", nullable: false),
+                    ProjectId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EmployeeProject", x => new { x.EmployeesEmpId, x.ProjectsProjId });
+                    table.PrimaryKey("PK_EmployeeProjects", x => new { x.ProjectId, x.EmployeeId });
                     table.ForeignKey(
-                        name: "FK_EmployeeProject_Employees_EmployeesEmpId",
-                        column: x => x.EmployeesEmpId,
+                        name: "FK_EmployeeProjects_Employees_EmployeeId",
+                        column: x => x.EmployeeId,
                         principalTable: "Employees",
-                        principalColumn: "EmpId",
+                        principalColumn: "EmployeeId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_EmployeeProject_Projects_ProjectsProjId",
-                        column: x => x.ProjectsProjId,
+                        name: "FK_EmployeeProjects_Projects_ProjectId",
+                        column: x => x.ProjectId,
                         principalTable: "Projects",
-                        principalColumn: "ProjId",
+                        principalColumn: "ProjectId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
+                table: "Employees",
+                columns: new[] { "EmployeeId", "Email", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Kalle@företaget.com", "Kalle Gustavsson" },
+                    { 2, "Sara@företaget.com", "Sara Andersson" },
+                    { 3, "Johan@företaget.com", "Johan Svensson" },
+                    { 4, "Lisa@företaget.com", "Lisa Lindström" },
+                    { 5, "Anders@företaget.com", "Anders Nilsson" },
+                    { 6, "Emma@företaget.com", "Emma Bergström" },
+                    { 7, "Peter@företaget.com", "Peter Persson" },
+                    { 8, "Maria@företaget.com", "Maria Karlsson" },
+                    { 9, "Erik@företaget.com", "Erik Johansson" },
+                    { 10, "Anna@företaget.com", "Anna Ahlström" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Projects",
+                columns: new[] { "ProjectId", "Description", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Develop an online store for a retail company.", "E-commerce Website" },
+                    { 2, "Create a web platform for bloggers to publish and share their content.", "Blog Platform" },
+                    { 3, "Develop a fun and engaging mobile game for iOS and Android platforms.", "Mobile Game App" }
+                });
+
+            migrationBuilder.InsertData(
                 table: "EmployeeProjects",
-                columns: new[] { "EmpId", "ProjId" },
+                columns: new[] { "EmployeeId", "ProjectId" },
                 values: new object[,]
                 {
                     { 1, 1 },
@@ -122,35 +137,8 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Employees",
-                columns: new[] { "EmpId", "Email", "Name" },
-                values: new object[,]
-                {
-                    { 1, "Kalle@företaget.com", "Kalle Gustavsson" },
-                    { 2, "Sara@företaget.com", "Sara Andersson" },
-                    { 3, "Johan@företaget.com", "Johan Svensson" },
-                    { 4, "Lisa@företaget.com", "Lisa Lindström" },
-                    { 5, "Anders@företaget.com", "Anders Nilsson" },
-                    { 6, "Emma@företaget.com", "Emma Bergström" },
-                    { 7, "Peter@företaget.com", "Peter Persson" },
-                    { 8, "Maria@företaget.com", "Maria Karlsson" },
-                    { 9, "Erik@företaget.com", "Erik Johansson" },
-                    { 10, "Anna@företaget.com", "Anna Ahlström" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Projects",
-                columns: new[] { "ProjId", "Description", "Name" },
-                values: new object[,]
-                {
-                    { 1, "Develop an online store for a retail company.", "E-commerce Website" },
-                    { 2, "Create a web platform for bloggers to publish and share their content.", "Blog Platform" },
-                    { 3, "Develop a fun and engaging mobile game for iOS and Android platforms.", "Mobile Game App" }
-                });
-
-            migrationBuilder.InsertData(
                 table: "TimeReports",
-                columns: new[] { "TRId", "EmployeeId", "End", "Start", "WorkHours" },
+                columns: new[] { "Id", "EmployeeId", "End", "Start", "WorkHours" },
                 values: new object[,]
                 {
                     { 1, 1, new DateTime(2023, 2, 1, 13, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 2, 1, 10, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 3, 0, 0, 0) },
@@ -186,9 +174,9 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_EmployeeProject_ProjectsProjId",
-                table: "EmployeeProject",
-                column: "ProjectsProjId");
+                name: "IX_EmployeeProjects_EmployeeId",
+                table: "EmployeeProjects",
+                column: "EmployeeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TimeReports_EmployeeId",
@@ -199,9 +187,6 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "EmployeeProject");
-
             migrationBuilder.DropTable(
                 name: "EmployeeProjects");
 

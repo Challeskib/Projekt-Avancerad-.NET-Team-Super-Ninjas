@@ -17,7 +17,7 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas
             builder.Services.AddSwaggerGen();
 
             builder.Services.AddDbContext<DataContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(builder.Configuration.GetConnectionString("PetterConnection")));
 
             var app = builder.Build();
 

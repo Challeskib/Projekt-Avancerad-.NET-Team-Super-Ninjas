@@ -5,7 +5,7 @@ namespace TimeReportModels
     public class TimeReport
     {
         [Key]
-        public int TRId { get; set; }
+        public int Id { get; set; }
         public int EmployeeId { get; set; }
         public Employee? Employee { get; set; }
 
