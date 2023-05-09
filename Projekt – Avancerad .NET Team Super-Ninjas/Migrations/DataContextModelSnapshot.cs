@@ -22,28 +22,13 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("EmployeeProject", b =>
-                {
-                    b.Property<int>("EmployeesEmpId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProjectsProjId")
-                        .HasColumnType("int");
-
-                    b.HasKey("EmployeesEmpId", "ProjectsProjId");
-
-                    b.HasIndex("ProjectsProjId");
-
-                    b.ToTable("EmployeeProject");
-                });
-
             modelBuilder.Entity("TimeReportModels.Employee", b =>
                 {
-                    b.Property<int>("EmpId")
+                    b.Property<int>("EmployeeId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EmpId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EmployeeId"));
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -53,68 +38,68 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("EmpId");
+                    b.HasKey("EmployeeId");
 
                     b.ToTable("Employees");
 
                     b.HasData(
                         new
                         {
-                            EmpId = 1,
+                            EmployeeId = 1,
                             Email = "Kalle@företaget.com",
                             Name = "Kalle Gustavsson"
                         },
                         new
                         {
-                            EmpId = 2,
+                            EmployeeId = 2,
                             Email = "Sara@företaget.com",
                             Name = "Sara Andersson"
                         },
                         new
                         {
-                            EmpId = 3,
+                            EmployeeId = 3,
                             Email = "Johan@företaget.com",
                             Name = "Johan Svensson"
                         },
                         new
                         {
-                            EmpId = 4,
+                            EmployeeId = 4,
                             Email = "Lisa@företaget.com",
                             Name = "Lisa Lindström"
                         },
                         new
                         {
-                            EmpId = 5,
+                            EmployeeId = 5,
                             Email = "Anders@företaget.com",
                             Name = "Anders Nilsson"
                         },
                         new
                         {
-                            EmpId = 6,
+                            EmployeeId = 6,
                             Email = "Emma@företaget.com",
                             Name = "Emma Bergström"
                         },
                         new
                         {
-                            EmpId = 7,
+                            EmployeeId = 7,
                             Email = "Peter@företaget.com",
                             Name = "Peter Persson"
                         },
                         new
                         {
-                            EmpId = 8,
+                            EmployeeId = 8,
                             Email = "Maria@företaget.com",
                             Name = "Maria Karlsson"
                         },
                         new
                         {
-                            EmpId = 9,
+                            EmployeeId = 9,
                             Email = "Erik@företaget.com",
                             Name = "Erik Johansson"
                         },
                         new
                         {
-                            EmpId = 10,
+                            EmployeeId = 10,
                             Email = "Anna@företaget.com",
                             Name = "Anna Ahlström"
                         });
@@ -122,101 +107,103 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Migrations
 
             modelBuilder.Entity("TimeReportModels.EmployeeProject", b =>
                 {
-                    b.Property<int>("ProjId")
+                    b.Property<int>("ProjectId")
                         .HasColumnType("int");
 
-                    b.Property<int>("EmpId")
+                    b.Property<int>("EmployeeId")
                         .HasColumnType("int");
 
-                    b.HasKey("ProjId", "EmpId");
+                    b.HasKey("ProjectId", "EmployeeId");
+
+                    b.HasIndex("EmployeeId");
 
                     b.ToTable("EmployeeProjects");
 
                     b.HasData(
                         new
                         {
-                            ProjId = 1,
-                            EmpId = 1
+                            ProjectId = 1,
+                            EmployeeId = 1
                         },
                         new
                         {
-                            ProjId = 1,
-                            EmpId = 2
+                            ProjectId = 1,
+                            EmployeeId = 2
                         },
                         new
                         {
-                            ProjId = 1,
-                            EmpId = 3
+                            ProjectId = 1,
+                            EmployeeId = 3
                         },
                         new
                         {
-                            ProjId = 1,
-                            EmpId = 4
+                            ProjectId = 1,
+                            EmployeeId = 4
                         },
                         new
                         {
-                            ProjId = 2,
-                            EmpId = 5
+                            ProjectId = 2,
+                            EmployeeId = 5
                         },
                         new
                         {
-                            ProjId = 2,
-                            EmpId = 6
+                            ProjectId = 2,
+                            EmployeeId = 6
                         },
                         new
                         {
-                            ProjId = 2,
-                            EmpId = 7
+                            ProjectId = 2,
+                            EmployeeId = 7
                         },
                         new
                         {
-                            ProjId = 2,
-                            EmpId = 8
+                            ProjectId = 2,
+                            EmployeeId = 8
                         },
                         new
                         {
-                            ProjId = 3,
-                            EmpId = 9
+                            ProjectId = 3,
+                            EmployeeId = 9
                         },
                         new
                         {
-                            ProjId = 3,
-                            EmpId = 10
+                            ProjectId = 3,
+                            EmployeeId = 10
                         },
                         new
                         {
-                            ProjId = 3,
-                            EmpId = 4
+                            ProjectId = 3,
+                            EmployeeId = 4
                         },
                         new
                         {
-                            ProjId = 3,
-                            EmpId = 5
+                            ProjectId = 3,
+                            EmployeeId = 5
                         },
                         new
                         {
-                            ProjId = 2,
-                            EmpId = 2
+                            ProjectId = 2,
+                            EmployeeId = 2
                         },
                         new
                         {
-                            ProjId = 2,
-                            EmpId = 3
+                            ProjectId = 2,
+                            EmployeeId = 3
                         },
                         new
                         {
-                            ProjId = 2,
-                            EmpId = 10
+                            ProjectId = 2,
+                            EmployeeId = 10
                         });
                 });
 
             modelBuilder.Entity("TimeReportModels.Project", b =>
                 {
-                    b.Property<int>("ProjId")
+                    b.Property<int>("ProjectId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProjId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProjectId"));
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -226,26 +213,26 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ProjId");
+                    b.HasKey("ProjectId");
 
                     b.ToTable("Projects");
 
                     b.HasData(
                         new
                         {
-                            ProjId = 1,
+                            ProjectId = 1,
                             Description = "Develop an online store for a retail company.",
                             Name = "E-commerce Website"
                         },
                         new
                         {
-                            ProjId = 2,
+                            ProjectId = 2,
                             Description = "Create a web platform for bloggers to publish and share their content.",
                             Name = "Blog Platform"
                         },
                         new
                         {
-                            ProjId = 3,
+                            ProjectId = 3,
                             Description = "Develop a fun and engaging mobile game for iOS and Android platforms.",
                             Name = "Mobile Game App"
                         });
@@ -253,11 +240,11 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Migrations
 
             modelBuilder.Entity("TimeReportModels.TimeReport", b =>
                 {
-                    b.Property<int>("TRId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TRId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("EmployeeId")
                         .HasColumnType("int");
@@ -271,7 +258,7 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Migrations
                     b.Property<TimeSpan>("WorkHours")
                         .HasColumnType("time");
 
-                    b.HasKey("TRId");
+                    b.HasKey("Id");
 
                     b.HasIndex("EmployeeId");
 
@@ -280,7 +267,7 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Migrations
                     b.HasData(
                         new
                         {
-                            TRId = 1,
+                            Id = 1,
                             EmployeeId = 1,
                             End = new DateTime(2023, 2, 1, 13, 0, 0, 0, DateTimeKind.Unspecified),
                             Start = new DateTime(2023, 2, 1, 10, 0, 0, 0, DateTimeKind.Unspecified),
@@ -288,7 +275,7 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Migrations
                         },
                         new
                         {
-                            TRId = 2,
+                            Id = 2,
                             EmployeeId = 2,
                             End = new DateTime(2023, 3, 15, 11, 30, 0, 0, DateTimeKind.Unspecified),
                             Start = new DateTime(2023, 3, 15, 8, 0, 0, 0, DateTimeKind.Unspecified),
@@ -296,7 +283,7 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Migrations
                         },
                         new
                         {
-                            TRId = 3,
+                            Id = 3,
                             EmployeeId = 3,
                             End = new DateTime(2023, 4, 5, 16, 0, 0, 0, DateTimeKind.Unspecified),
                             Start = new DateTime(2023, 4, 5, 14, 0, 0, 0, DateTimeKind.Unspecified),
@@ -304,7 +291,7 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Migrations
                         },
                         new
                         {
-                            TRId = 4,
+                            Id = 4,
                             EmployeeId = 4,
                             End = new DateTime(2023, 5, 1, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Start = new DateTime(2023, 5, 1, 9, 0, 0, 0, DateTimeKind.Unspecified),
@@ -312,7 +299,7 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Migrations
                         },
                         new
                         {
-                            TRId = 5,
+                            Id = 5,
                             EmployeeId = 5,
                             End = new DateTime(2023, 1, 20, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             Start = new DateTime(2023, 1, 20, 11, 0, 0, 0, DateTimeKind.Unspecified),
@@ -320,7 +307,7 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Migrations
                         },
                         new
                         {
-                            TRId = 6,
+                            Id = 6,
                             EmployeeId = 6,
                             End = new DateTime(2023, 2, 5, 10, 0, 0, 0, DateTimeKind.Unspecified),
                             Start = new DateTime(2023, 2, 5, 8, 0, 0, 0, DateTimeKind.Unspecified),
@@ -328,7 +315,7 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Migrations
                         },
                         new
                         {
-                            TRId = 7,
+                            Id = 7,
                             EmployeeId = 7,
                             End = new DateTime(2023, 3, 22, 15, 0, 0, 0, DateTimeKind.Unspecified),
                             Start = new DateTime(2023, 3, 22, 13, 0, 0, 0, DateTimeKind.Unspecified),
@@ -336,7 +323,7 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Migrations
                         },
                         new
                         {
-                            TRId = 8,
+                            Id = 8,
                             EmployeeId = 8,
                             End = new DateTime(2023, 4, 14, 14, 0, 0, 0, DateTimeKind.Unspecified),
                             Start = new DateTime(2023, 4, 14, 12, 0, 0, 0, DateTimeKind.Unspecified),
@@ -344,7 +331,7 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Migrations
                         },
                         new
                         {
-                            TRId = 9,
+                            Id = 9,
                             EmployeeId = 9,
                             End = new DateTime(2023, 5, 1, 10, 0, 0, 0, DateTimeKind.Unspecified),
                             Start = new DateTime(2023, 5, 1, 8, 0, 0, 0, DateTimeKind.Unspecified),
@@ -352,7 +339,7 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Migrations
                         },
                         new
                         {
-                            TRId = 10,
+                            Id = 10,
                             EmployeeId = 10,
                             End = new DateTime(2023, 1, 15, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             Start = new DateTime(2023, 1, 15, 9, 0, 0, 0, DateTimeKind.Unspecified),
@@ -360,7 +347,7 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Migrations
                         },
                         new
                         {
-                            TRId = 11,
+                            Id = 11,
                             EmployeeId = 1,
                             End = new DateTime(2023, 1, 10, 14, 30, 0, 0, DateTimeKind.Unspecified),
                             Start = new DateTime(2023, 1, 10, 13, 0, 0, 0, DateTimeKind.Unspecified),
@@ -368,7 +355,7 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Migrations
                         },
                         new
                         {
-                            TRId = 12,
+                            Id = 12,
                             EmployeeId = 1,
                             End = new DateTime(2023, 1, 1, 10, 0, 0, 0, DateTimeKind.Unspecified),
                             Start = new DateTime(2023, 1, 1, 8, 0, 0, 0, DateTimeKind.Unspecified),
@@ -376,7 +363,7 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Migrations
                         },
                         new
                         {
-                            TRId = 13,
+                            Id = 13,
                             EmployeeId = 2,
                             End = new DateTime(2023, 1, 2, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             Start = new DateTime(2023, 1, 2, 9, 0, 0, 0, DateTimeKind.Unspecified),
@@ -384,7 +371,7 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Migrations
                         },
                         new
                         {
-                            TRId = 14,
+                            Id = 14,
                             EmployeeId = 3,
                             End = new DateTime(2023, 1, 3, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             Start = new DateTime(2023, 1, 3, 10, 0, 0, 0, DateTimeKind.Unspecified),
@@ -392,7 +379,7 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Migrations
                         },
                         new
                         {
-                            TRId = 15,
+                            Id = 15,
                             EmployeeId = 4,
                             End = new DateTime(2023, 1, 4, 13, 0, 0, 0, DateTimeKind.Unspecified),
                             Start = new DateTime(2023, 1, 4, 11, 0, 0, 0, DateTimeKind.Unspecified),
@@ -400,7 +387,7 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Migrations
                         },
                         new
                         {
-                            TRId = 16,
+                            Id = 16,
                             EmployeeId = 5,
                             End = new DateTime(2023, 1, 5, 14, 0, 0, 0, DateTimeKind.Unspecified),
                             Start = new DateTime(2023, 1, 5, 12, 0, 0, 0, DateTimeKind.Unspecified),
@@ -408,7 +395,7 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Migrations
                         },
                         new
                         {
-                            TRId = 17,
+                            Id = 17,
                             EmployeeId = 6,
                             End = new DateTime(2023, 1, 6, 15, 0, 0, 0, DateTimeKind.Unspecified),
                             Start = new DateTime(2023, 1, 6, 13, 0, 0, 0, DateTimeKind.Unspecified),
@@ -416,7 +403,7 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Migrations
                         },
                         new
                         {
-                            TRId = 18,
+                            Id = 18,
                             EmployeeId = 7,
                             End = new DateTime(2023, 1, 7, 16, 0, 0, 0, DateTimeKind.Unspecified),
                             Start = new DateTime(2023, 1, 7, 14, 0, 0, 0, DateTimeKind.Unspecified),
@@ -424,7 +411,7 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Migrations
                         },
                         new
                         {
-                            TRId = 19,
+                            Id = 19,
                             EmployeeId = 8,
                             End = new DateTime(2023, 1, 8, 17, 0, 0, 0, DateTimeKind.Unspecified),
                             Start = new DateTime(2023, 1, 8, 15, 0, 0, 0, DateTimeKind.Unspecified),
@@ -432,7 +419,7 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Migrations
                         },
                         new
                         {
-                            TRId = 20,
+                            Id = 20,
                             EmployeeId = 9,
                             End = new DateTime(2023, 1, 9, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             Start = new DateTime(2023, 1, 9, 16, 0, 0, 0, DateTimeKind.Unspecified),
@@ -440,7 +427,7 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Migrations
                         },
                         new
                         {
-                            TRId = 21,
+                            Id = 21,
                             EmployeeId = 1,
                             End = new DateTime(2023, 3, 5, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             Start = new DateTime(2023, 3, 5, 10, 0, 0, 0, DateTimeKind.Unspecified),
@@ -448,7 +435,7 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Migrations
                         },
                         new
                         {
-                            TRId = 22,
+                            Id = 22,
                             EmployeeId = 2,
                             End = new DateTime(2023, 4, 18, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             Start = new DateTime(2023, 4, 18, 8, 0, 0, 0, DateTimeKind.Unspecified),
@@ -456,7 +443,7 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Migrations
                         },
                         new
                         {
-                            TRId = 23,
+                            Id = 23,
                             EmployeeId = 3,
                             End = new DateTime(2023, 5, 1, 16, 0, 0, 0, DateTimeKind.Unspecified),
                             Start = new DateTime(2023, 5, 1, 14, 0, 0, 0, DateTimeKind.Unspecified),
@@ -464,7 +451,7 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Migrations
                         },
                         new
                         {
-                            TRId = 24,
+                            Id = 24,
                             EmployeeId = 4,
                             End = new DateTime(2023, 1, 25, 14, 0, 0, 0, DateTimeKind.Unspecified),
                             Start = new DateTime(2023, 1, 25, 12, 0, 0, 0, DateTimeKind.Unspecified),
@@ -472,7 +459,7 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Migrations
                         },
                         new
                         {
-                            TRId = 25,
+                            Id = 25,
                             EmployeeId = 5,
                             End = new DateTime(2023, 2, 10, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             Start = new DateTime(2023, 2, 10, 9, 0, 0, 0, DateTimeKind.Unspecified),
@@ -480,7 +467,7 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Migrations
                         },
                         new
                         {
-                            TRId = 26,
+                            Id = 26,
                             EmployeeId = 6,
                             End = new DateTime(2023, 3, 25, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             Start = new DateTime(2023, 3, 25, 8, 0, 0, 0, DateTimeKind.Unspecified),
@@ -488,7 +475,7 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Migrations
                         },
                         new
                         {
-                            TRId = 27,
+                            Id = 27,
                             EmployeeId = 7,
                             End = new DateTime(2023, 4, 10, 15, 30, 0, 0, DateTimeKind.Unspecified),
                             Start = new DateTime(2023, 4, 10, 14, 0, 0, 0, DateTimeKind.Unspecified),
@@ -496,7 +483,7 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Migrations
                         },
                         new
                         {
-                            TRId = 28,
+                            Id = 28,
                             EmployeeId = 8,
                             End = new DateTime(2023, 5, 1, 9, 30, 0, 0, DateTimeKind.Unspecified),
                             Start = new DateTime(2023, 5, 1, 8, 0, 0, 0, DateTimeKind.Unspecified),
@@ -504,7 +491,7 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Migrations
                         },
                         new
                         {
-                            TRId = 29,
+                            Id = 29,
                             EmployeeId = 9,
                             End = new DateTime(2023, 1, 20, 14, 0, 0, 0, DateTimeKind.Unspecified),
                             Start = new DateTime(2023, 1, 20, 13, 0, 0, 0, DateTimeKind.Unspecified),
@@ -512,7 +499,7 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Migrations
                         },
                         new
                         {
-                            TRId = 30,
+                            Id = 30,
                             EmployeeId = 10,
                             End = new DateTime(2023, 2, 5, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             Start = new DateTime(2023, 2, 5, 10, 0, 0, 0, DateTimeKind.Unspecified),
@@ -520,19 +507,23 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Migrations
                         });
                 });
 
-            modelBuilder.Entity("EmployeeProject", b =>
+            modelBuilder.Entity("TimeReportModels.EmployeeProject", b =>
                 {
-                    b.HasOne("TimeReportModels.Employee", null)
+                    b.HasOne("TimeReportModels.Employee", "Employee")
                         .WithMany()
-                        .HasForeignKey("EmployeesEmpId")
+                        .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TimeReportModels.Project", null)
+                    b.HasOne("TimeReportModels.Project", "Project")
                         .WithMany()
-                        .HasForeignKey("ProjectsProjId")
+                        .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Employee");
+
+                    b.Navigation("Project");
                 });
 
             modelBuilder.Entity("TimeReportModels.TimeReport", b =>

@@ -7,8 +7,10 @@ namespace TimeReportModels
     public class EmployeeProject
     {
         //[Key]
-        //public int EmpProjId { get; set; }
-        public int EmpId { get; set; }
-        public int ProjId { get; set; }
+        //public int Id { get; set; }
+        public int EmployeeId { get; set; }
+        public Employee Employee { get; set; }
+        public int ProjectId { get; set; }
+        public Project Project { get; set; }
     }
 }
