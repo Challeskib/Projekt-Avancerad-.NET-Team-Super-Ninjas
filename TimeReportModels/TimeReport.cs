@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace TimeReportModels
 {
@@ -7,6 +8,7 @@ namespace TimeReportModels
         [Key]
         public int Id { get; set; }
         public int EmployeeId { get; set; }
+        [JsonIgnore]
         public Employee? Employee { get; set; }
 
         [Range(typeof(DateTime), "1/1/2023", "1/1/2030", ErrorMessage = "Date is outside of accepted range")]
@@ -14,6 +16,7 @@ namespace TimeReportModels
 
         [Range(typeof(DateTime), "1/1/2023", "1/1/2030", ErrorMessage = "Date is outside of accepted range")]
         public DateTime End { get; set; }
+        [JsonIgnore]
         public TimeSpan WorkHours { get; set; }
 
         public TimeReport(DateTime start, DateTime end)
