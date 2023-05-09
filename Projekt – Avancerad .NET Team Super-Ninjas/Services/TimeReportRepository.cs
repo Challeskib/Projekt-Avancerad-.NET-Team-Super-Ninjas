@@ -1,31 +1,69 @@
-﻿namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Services
+﻿using Microsoft.Identity.Client;
+
+namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Services
 {
     public class TimeReportRepository : IRepository<TimeReport>
     {
-        public Task<TimeReport> Create(TimeReport obj)
+        private DataContext _context;
+        public TimeReportRepository(DataContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
+        }
+        public async Task<TimeReport> Create(TimeReport obj)
+        {
+            if (obj != null)
+            {
+                _context.TimeReports.Add(obj);
+                await _context.SaveChangesAsync();
+                return obj;
+            } 
+            else
+            {
+                return null;
+            }
         }
 
-        public Task<TimeReport> Delete(int id)
+        public async Task<TimeReport> Delete(int id)
         {
-            throw new NotImplementedException();
+            TimeReport trToDelete = await GetById(id);
+            if (trToDelete != null)
+            {
+                _context.TimeReports.Remove(trToDelete);
+                await _context.SaveChangesAsync();
+                return trToDelete;
+            }
+            else
+            {
+                return null;
+            }
         }
 
-
-        public Task<TimeReport> GetById(int id)
+        public async Task<IEnumerable<TimeReport>> GetAll()
         {
-            throw new NotImplementedException();
+            return await _context.TimeReports.ToListAsync();
         }
 
-        public Task<TimeReport> Update(TimeReport obj)
+        public async Task<TimeReport> GetById(int id)
         {
-            throw new NotImplementedException();
+            return await _context.TimeReports.FirstOrDefaultAsync(tr => tr.Id == id);
         }
 
-        Task<IEnumerable<TimeReport>> IRepository<TimeReport>.GetAll()
+        public async Task<TimeReport> Update(TimeReport obj)
         {
-            throw new NotImplementedException();
+            TimeReport trToUpdate = await GetById(obj.Id);
+            if (trToUpdate != null)
+            {
+                trToUpdate.Start = obj.Start;
+                trToUpdate.End = obj.End;
+                trToUpdate.EmployeeId = obj.EmployeeId;
+                trToUpdate.WorkHours = obj.End.Subtract(obj.Start);
+                await _context.SaveChangesAsync();
+                return trToUpdate;
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }
