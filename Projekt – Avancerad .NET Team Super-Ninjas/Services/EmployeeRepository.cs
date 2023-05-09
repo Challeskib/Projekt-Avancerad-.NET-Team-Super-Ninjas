@@ -6,6 +6,7 @@
         public EmployeeRepository(DataContext context)
         {
             _context = context;
+
         }
 
         async Task<IEnumerable<Employee>> IRepository<Employee>.GetAll()
