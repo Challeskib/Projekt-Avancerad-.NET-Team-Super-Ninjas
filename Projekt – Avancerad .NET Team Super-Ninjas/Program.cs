@@ -17,10 +17,12 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            builder.Services.AddScoped<IRepository<Employee>, EmployeeRepository>();
+
             builder.Services.AddScoped<IRepository<TimeReport>, TimeReportRepository>();
 
             builder.Services.AddDbContext<DataContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("PetterConnection")));
+                options.UseSqlServer(builder.Configuration.GetConnectionString("CharlieConnection")));
 
             var app = builder.Build();
 
