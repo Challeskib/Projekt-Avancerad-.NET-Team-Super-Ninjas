@@ -1,6 +1,7 @@
 global using Projekt___Avancerad_.NET_Team_Super_Ninjas.Data;
 using Projekt___Avancerad_.NET_Team_Super_Ninjas.Services;
 using System;
+using TimeReportModels.DTOs;
 
 namespace Projekt___Avancerad_.NET_Team_Super_Ninjas
 {
@@ -21,9 +22,10 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas
             builder.Services.AddScoped<IRepository<Employee>, EmployeeRepository>();
 
             builder.Services.AddScoped<IRepository<TimeReport>, TimeReportRepository>();
+            builder.Services.AddScoped<IEmployee, EmployeeRepository>();
 
             builder.Services.AddDbContext<DataContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("CharlieConnection")));
+                options.UseSqlServer(builder.Configuration.GetConnectionString("PetterConnection")));
 
             var app = builder.Build();
 
