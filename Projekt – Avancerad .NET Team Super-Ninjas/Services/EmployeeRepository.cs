@@ -1,12 +1,16 @@
-﻿namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Services
+﻿using AutoMapper;
+using TimeReportModels.DTOs;
+
+namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Services
 {
-    public class EmployeeRepository : IRepository<Employee>
+    public class EmployeeRepository : IRepository<Employee>, IEmployee
     {
         private DataContext _context;
-        public EmployeeRepository(DataContext context)
+        private readonly IMapper _mapper;
+        public EmployeeRepository(DataContext context, IMapper mapper)
         {
             _context = context;
-
+            _mapper = mapper;
         }
 
         async Task<IEnumerable<Employee>> IRepository<Employee>.GetAll()
@@ -37,7 +41,6 @@
                 return empToDelete;
             }
             return null;
-
         }
 
         public async Task<Employee> Update(Employee obj)
@@ -52,14 +55,21 @@
                 return empToUpdate;
             }
             return null;
-
-
-
-
-
-
         }
 
+        public async Task<IEnumerable<EmployeeDto>> GetEmployeeWithReports(int id)
+        {
+            var emp = _context.Employees
+                .Include(e => e.TimeReports)
+                .Where(e => e.EmployeeId == id)
+                .Select(employee => _mapper.Map<EmployeeDto>(employee));
+            return emp;
+            
+        }
 
+        public Task<Employee> GetEmployeeWorkTime(int id, DateOnly startDate, DateOnly endDate)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

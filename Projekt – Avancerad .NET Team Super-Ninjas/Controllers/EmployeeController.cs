@@ -8,9 +8,11 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Controllers
     public class EmployeeController : ControllerBase
     {
         private readonly IRepository<Employee> _empRepo;
-        public EmployeeController(IRepository<Employee> context)
+        private readonly IEmployee _empRepo2;
+        public EmployeeController(IRepository<Employee> empRepo, IEmployee empRepo2)
         {
-            _empRepo = context;
+            _empRepo = empRepo;
+            _empRepo2 = empRepo2;
         }
 
         [HttpGet]
@@ -43,6 +45,12 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Controllers
             {
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
+        }
+
+        [HttpGet("Reports/{id:int}")]
+        public async Task<IActionResult> GetEmployeeReports(int id)
+        {
+            return Ok(await _empRepo2.GetEmployeeWithReports(id));
         }
 
         [HttpPost]
@@ -100,12 +108,6 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Controllers
             {
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
-
-
-
         }
-
-
-
     }
 }
