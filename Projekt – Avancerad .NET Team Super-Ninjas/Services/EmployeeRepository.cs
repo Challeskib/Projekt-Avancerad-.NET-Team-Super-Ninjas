@@ -2,29 +2,63 @@
 {
     public class EmployeeRepository : IRepository<Employee>
     {
-        public Task<Employee> Create(Employee obj)
+        private DataContext _context;
+        public EmployeeRepository(DataContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
         }
 
-        public Task<Employee> Delete(int id)
+        async Task<IEnumerable<Employee>> IRepository<Employee>.GetAll()
         {
-            throw new NotImplementedException();
+            return await _context.Employees.ToListAsync();
         }
 
-        public Task<Employee> GetAll()
+        public async Task<Employee> GetById(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Employees.FirstOrDefaultAsync(e => e.EmployeeId == id);
         }
 
-        public Task<Employee> GetById(int id)
+        public async Task<Employee> Create(Employee obj)
         {
-            throw new NotImplementedException();
+            var addedEmployee = await _context.Employees.AddAsync(obj);
+            await _context.SaveChangesAsync();
+            return addedEmployee.Entity;
         }
 
-        public Task<Employee> Update(Employee obj)
+        public async Task<Employee> Delete(int id)
         {
-            throw new NotImplementedException();
+            var empToDelete = await GetById(id);
+
+            if (empToDelete != null)
+            {
+                _context.Employees.Remove(empToDelete);
+                await _context.SaveChangesAsync();
+                return empToDelete;
+            }
+            return null;
+
         }
+
+        public async Task<Employee> Update(Employee obj)
+        {
+            var empToUpdate = await GetById(obj.EmployeeId);
+
+            if (empToUpdate != null)
+            {
+                empToUpdate.Name = obj.Name;
+                empToUpdate.Email = obj.Email;
+                await _context.SaveChangesAsync();
+                return empToUpdate;
+            }
+            return null;
+
+
+
+
+
+
+        }
+
+
     }
 }

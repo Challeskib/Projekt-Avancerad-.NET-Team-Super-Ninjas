@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace TimeReportModels
 {
@@ -8,7 +9,9 @@ namespace TimeReportModels
         public int EmployeeId { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
-        public ICollection<TimeReport> TimeReports { get; set; }
+
+        [JsonIgnore]
+        public ICollection<TimeReport>? TimeReports { get; set; }
         //public ICollection<Project> Projects { get; set; }
     }
 }

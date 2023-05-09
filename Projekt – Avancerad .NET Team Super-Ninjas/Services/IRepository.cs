@@ -3,7 +3,7 @@
     public interface IRepository<T>
     {
 
-        public Task<T> GetAll();
+        Task<IEnumerable<T>> GetAll();
         public Task<T> GetById(int id);
         public Task<T> Create(T obj);
         public Task<T> Update(T obj);  

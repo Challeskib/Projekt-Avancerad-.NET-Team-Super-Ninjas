@@ -12,10 +12,6 @@
             throw new NotImplementedException();
         }
 
-        public Task<TimeReport> GetAll()
-        {
-            throw new NotImplementedException();
-        }
 
         public Task<TimeReport> GetById(int id)
         {
@@ -23,6 +19,11 @@
         }
 
         public Task<TimeReport> Update(TimeReport obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<IEnumerable<TimeReport>> IRepository<TimeReport>.GetAll()
         {
             throw new NotImplementedException();
         }
