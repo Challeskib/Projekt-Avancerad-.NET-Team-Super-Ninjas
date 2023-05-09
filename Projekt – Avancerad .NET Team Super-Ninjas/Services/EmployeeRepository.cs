@@ -12,17 +12,17 @@
             throw new NotImplementedException();
         }
 
-        public Task<Employee> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
         public Task<Employee> GetById(int id)
         {
             throw new NotImplementedException();
         }
 
         public Task<Employee> Update(Employee obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<IEnumerable<Employee>> IRepository<Employee>.GetAll()
         {
             throw new NotImplementedException();
         }
