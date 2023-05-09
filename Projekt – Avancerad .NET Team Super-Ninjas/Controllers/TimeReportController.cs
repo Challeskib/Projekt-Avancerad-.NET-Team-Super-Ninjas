@@ -53,10 +53,10 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Controllers
         {
             if (timeReport != null)
             {
-                _trRepo.Update(timeReport);
+                await _trRepo.Update(timeReport);
                 return Ok(timeReport);
             }
-            return NotFound($"Time report with Id {timeReport.Id} not found.");
+            return NotFound($"Time report not found.");
         }
 
         [HttpDelete("{id:int}")]
@@ -65,7 +65,7 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Controllers
             try
             {
 
-                if (await _trRepo?.Delete(id) != null)
+                if (await _trRepo.Delete(id) != null)
                 {
                     return Ok();
                 }
