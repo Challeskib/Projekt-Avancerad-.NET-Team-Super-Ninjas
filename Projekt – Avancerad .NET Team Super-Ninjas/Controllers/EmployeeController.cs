@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Projekt___Avancerad_.NET_Team_Super_Ninjas.DTOs;
 using Projekt___Avancerad_.NET_Team_Super_Ninjas.Services;
 
 namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Controllers
@@ -139,5 +140,26 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
+
+        [HttpGet("GetEmployeeWorkTime")]
+        public async Task<IActionResult> GetEmployeeWorkTime([FromQuery]EmpIdStartEndDto emp)
+        {
+            try
+            {
+                if (emp == null)
+                {
+                    return BadRequest();
+                }
+                var newEmp = await _empRepo2.GetEmployeeWorkTime(emp.EmployeeId, emp.Start, emp.End);
+
+                return Ok(newEmp);
+            }
+            catch
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Unable to complete request, internal server error.");
+            }
+        }
+
     }
 }

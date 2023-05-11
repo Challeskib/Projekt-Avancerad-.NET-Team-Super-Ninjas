@@ -24,7 +24,7 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas
             builder.Services.AddScoped<IEmployee, EmployeeRepository>();
 
             builder.Services.AddDbContext<DataContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("PetterConnection")));
+                options.UseSqlServer(builder.Configuration.GetConnectionString("CharlieConnection")));
 
             var app = builder.Build();
 
