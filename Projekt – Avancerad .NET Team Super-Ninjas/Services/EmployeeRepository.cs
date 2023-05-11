@@ -57,12 +57,13 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Services
             return null;
         }
 
-        public async Task<IEnumerable<EmployeeDto>> GetEmployeeWithReports(int id)
+        public async Task<EmployeeDto> GetEmployeeWithReports(int id)
         {
             var emp = _context.Employees
                 .Include(e => e.TimeReports)
                 .Where(e => e.EmployeeId == id)
-                .Select(employee => _mapper.Map<EmployeeDto>(employee));
+                .Select(employee => _mapper.Map<EmployeeDto>(employee))
+                .FirstOrDefault();
             return emp;
             
         }
