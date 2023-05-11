@@ -1,5 +1,5 @@
 ﻿global using AutoMapper;
-using TimeReportModels.DTOs;
+using Projekt___Avancerad_.NET_Team_Super_Ninjas.DTOs;
 
 namespace Projekt___Avancerad_.NET_Team_Super_Ninjas
 {
@@ -9,6 +9,7 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas
         {
             CreateMap<Employee, EmployeeDto>();
             CreateMap<TimeReport, TimeReportDto>();
+            CreateMap<JoinedEmpProj, EmployeeProjectDto >();
         }
     }
 }
