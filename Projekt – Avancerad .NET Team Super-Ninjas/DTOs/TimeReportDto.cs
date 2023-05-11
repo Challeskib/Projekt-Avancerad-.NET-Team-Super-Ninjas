@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TimeReportModels.DTOs
 {
-    internal class TimeReportDto
+    public class TimeReportDto
     {
         public DateTime Start { get; set; }
         public TimeSpan WorkHours { get; set; }
