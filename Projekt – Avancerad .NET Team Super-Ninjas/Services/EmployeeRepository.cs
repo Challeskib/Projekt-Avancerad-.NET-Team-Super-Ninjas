@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Projekt___Avancerad_.NET_Team_Super_Ninjas.DTOs;
+using System.Linq;
 
 namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Services
 {
@@ -68,9 +69,32 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Services
             
         }
 
-        public Task<Employee> GetEmployeeWorkTime(int id, DateOnly startDate, DateOnly endDate)
+        public async Task<EmployeeWorkTimeDto> GetEmployeeWorkTime(int id, DateTime startDate, DateTime endDate)
         {
-            throw new NotImplementedException();
+            var emp = await _context.Employees
+                .Include(e => e.TimeReports)
+                .FirstOrDefaultAsync(e => e.EmployeeId == id);
+
+            var newEmp = new EmployeeWorkTimeDto()
+            {
+                EmployeeId = emp.EmployeeId,
+                Name = emp.Name,
+            };
+
+            newEmp.WorkHours = TimeSpan.Zero; //Konstigt nog så löste denna koden allt.
+                                              //Då TimeSpan är en struct och inte en klass så kan detta tydligen orsaka 
+                                              //oväntade problem om man försöker addera ihop två olika structs. :)
+
+
+            foreach (var timeReport in emp.TimeReports)
+            {
+                if (timeReport.Start >= startDate && timeReport.End <= endDate)
+                {
+                    newEmp.WorkHours += timeReport.WorkHours;
+                }
+            }
+
+            return newEmp;
         }
 
         public async Task<IEnumerable<EmployeeProjectDto>> GetEmployeesInProject(int id)

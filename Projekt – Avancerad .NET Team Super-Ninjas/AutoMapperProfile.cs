@@ -10,6 +10,8 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas
             CreateMap<Employee, EmployeeDto>();
             CreateMap<TimeReport, TimeReportDto>();
             CreateMap<JoinedEmpProj, EmployeeProjectDto >();
+            CreateMap<Employee, EmployeeProjectDto>();
+
         }
     }
 }
