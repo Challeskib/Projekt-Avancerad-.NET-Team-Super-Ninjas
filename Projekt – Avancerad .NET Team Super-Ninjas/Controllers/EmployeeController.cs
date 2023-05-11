@@ -50,7 +50,37 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Controllers
         [HttpGet("Reports/{id:int}")]
         public async Task<IActionResult> GetEmployeeReports(int id)
         {
-            return Ok(await _empRepo2.GetEmployeeWithReports(id));
+            try
+            {
+                var result = await _empRepo2.GetEmployeeWithReports(id);
+                if (result != null)
+                {
+                    return Ok(result);
+                }
+                return NotFound($"Could not find Employee with id: {id}");
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
+
+        [HttpGet("EmpsInProj/{id:int}")]
+        public async Task<IActionResult> GetEmployessInProject(int id)
+        {
+            try
+            {
+                var result = await _empRepo2.GetEmployeesInProject(id);
+                if (result != null)
+                {
+                    return Ok(result);
+                }
+                return NotFound($"Could not find Project with id: {id}");
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
         }
 
         [HttpPost]

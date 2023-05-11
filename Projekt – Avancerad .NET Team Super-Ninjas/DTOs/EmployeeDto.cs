@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TimeReportModels.DTOs
+namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.DTOs
 {
     public class EmployeeDto
     {
