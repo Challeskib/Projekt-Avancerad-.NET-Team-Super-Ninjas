@@ -8,6 +8,7 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas
         public AutoMapperProfile()
         {
             CreateMap<Employee, EmployeeDto>();
+            CreateMap<TimeReport, TimeReportDto>();
         }
     }
 }
