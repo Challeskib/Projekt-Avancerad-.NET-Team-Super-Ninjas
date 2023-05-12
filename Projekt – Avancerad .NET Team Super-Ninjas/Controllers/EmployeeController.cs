@@ -9,11 +9,11 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Controllers
     public class EmployeeController : ControllerBase
     {
         private readonly IRepository<Employee> _empRepo;
-        private readonly IEmployee _empRepo2;
+        private readonly IEmployee _iEmployee;
         public EmployeeController(IRepository<Employee> empRepo, IEmployee empRepo2)
         {
             _empRepo = empRepo;
-            _empRepo2 = empRepo2;
+            _iEmployee = empRepo2;
         }
 
         [HttpGet]
@@ -53,7 +53,7 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Controllers
         {
             try
             {
-                var result = await _empRepo2.GetEmployeeWithReports(id);
+                var result = await _iEmployee.GetEmployeeWithReports(id);
                 if (result != null)
                 {
                     return Ok(result);
@@ -71,7 +71,7 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Controllers
         {
             try
             {
-                var result = await _empRepo2.GetEmployeesInProject(id);
+                var result = await _iEmployee.GetEmployeesInProject(id);
                 if (result != null)
                 {
                     return Ok(result);
@@ -146,11 +146,13 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Controllers
         {
             try
             {
-                //if (emp == null)
-                //{
-                //    return BadRequest();
-                //}
-                var newEmp = await _empRepo2.GetEmployeeWorkTime(id, start, end);
+                var result = await _iEmployee.GetEmployeesInProject(id);
+                if(result == null)
+                {
+                    return BadRequest(result);
+                }
+
+                var newEmp = await _iEmployee.GetEmployeeWorkTime(id, start, end);
 
                 return Ok(newEmp);
             }

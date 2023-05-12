@@ -6,7 +6,7 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Services
 {
     public class EmployeeRepository : IRepository<Employee>, IEmployee
     {
-        private DataContext _context;
+        private readonly DataContext _context;
         private readonly IMapper _mapper;
         public EmployeeRepository(DataContext context, IMapper mapper)
         {
