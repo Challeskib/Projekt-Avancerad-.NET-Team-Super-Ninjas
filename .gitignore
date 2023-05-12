@@ -361,3 +361,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/Projekt – Avancerad .NET Team Super-Ninjas/appsettings.json
+/Projekt – Avancerad .NET Team Super-Ninjas/appsettings.Development.json
