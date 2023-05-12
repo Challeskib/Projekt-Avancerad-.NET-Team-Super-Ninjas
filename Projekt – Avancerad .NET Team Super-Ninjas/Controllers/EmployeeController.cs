@@ -142,15 +142,15 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Controllers
         }
 
         [HttpGet("GetEmployeeWorkTime")]
-        public async Task<IActionResult> GetEmployeeWorkTime([FromQuery]EmpIdStartEndDto emp)
+        public async Task<IActionResult> GetEmployeeWorkTime(int id, DateTime start, DateTime end)
         {
             try
             {
-                if (emp == null)
-                {
-                    return BadRequest();
-                }
-                var newEmp = await _empRepo2.GetEmployeeWorkTime(emp.EmployeeId, emp.Start, emp.End);
+                //if (emp == null)
+                //{
+                //    return BadRequest();
+                //}
+                var newEmp = await _empRepo2.GetEmployeeWorkTime(id, start, end);
 
                 return Ok(newEmp);
             }
