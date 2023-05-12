@@ -48,6 +48,8 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Services
         {
             var empToUpdate = await GetById(obj.EmployeeId);
 
+
+
             if (empToUpdate != null)
             {
                 empToUpdate.Name = obj.Name;
@@ -73,28 +75,28 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas.Services
         {
             var emp = await _context.Employees
                 .Include(e => e.TimeReports)
-                .FirstOrDefaultAsync(e => e.EmployeeId == id);
+                .Where(e => e.EmployeeId == id)
+                .Select(e => new EmployeeWorkTimeDto { EmployeeId = e.EmployeeId, Name = e.Name, TimeReports = e.TimeReports })
+                .FirstOrDefaultAsync();
 
-            var newEmp = new EmployeeWorkTimeDto()
-            {
-                EmployeeId = emp.EmployeeId,
-                Name = emp.Name,
-            };
+            //var newEmp = new EmployeeWorkTimeDto()
+            //{
+            //    EmployeeId = emp.EmployeeId,
+            //    Name = emp.Name,
+            //};
 
-            newEmp.WorkHours = TimeSpan.Zero; //Konstigt nog så löste denna koden allt.
-                                              //Då TimeSpan är en struct och inte en klass så kan detta tydligen orsaka 
-                                              //oväntade problem om man försöker addera ihop två olika structs. :)
-
+            emp.WorkHours = TimeSpan.Zero; //Konstigt nog så löste denna koden allt.
+                                           //Då TimeSpan är en struct och inte en klass så kan detta tydligen orsaka 
+                                           //oväntade problem om man försöker addera ihop två olika structs. :)
 
             foreach (var timeReport in emp.TimeReports)
             {
                 if (timeReport.Start >= startDate && timeReport.End <= endDate)
                 {
-                    newEmp.WorkHours += timeReport.WorkHours;
+                    emp.WorkHours += timeReport.WorkHours;
                 }
             }
-
-            return newEmp;
+            return emp;
         }
 
         public async Task<IEnumerable<EmployeeProjectDto>> GetEmployeesInProject(int id)
