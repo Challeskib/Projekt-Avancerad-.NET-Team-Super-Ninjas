@@ -19,8 +19,9 @@ namespace Projekt___Avancerad_.NET_Team_Super_Ninjas
             builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
             builder.Services.AddScoped<IRepository<Employee>, EmployeeRepository>();
-
             builder.Services.AddScoped<IRepository<TimeReport>, TimeReportRepository>();
+            builder.Services.AddScoped<IRepository<Project>, ProjectRepository>();
+
             builder.Services.AddScoped<IEmployee, EmployeeRepository>();
 
             builder.Services.AddDbContext<DataContext>(options =>
